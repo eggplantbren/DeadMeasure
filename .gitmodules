@@ -1,0 +1,3 @@
+[submodule "references.bib"]
+	path = references.bib
+	url = git@github.com:eggplantbren/references.bib
