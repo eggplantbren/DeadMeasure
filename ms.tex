@@ -189,16 +189,16 @@ Nested Sampling works with {\em constrained prior} distributions,
 parameterised by a likelihood threshold $\thresh$, given by
 \begin{align}
 p(\coord \given \thresh)
-    &\propto \pi(\coord)\mathds{1}\left(L(\coord) > \thresh\right).
+    &\propto \pi(\coord)\mathds{1}\left(L(\coord) > \thresh\right),
 \end{align}
+where $\mathds{1}()$ is an indicator function that returns 1 if the argument
+is true and 0 otherwise.
 The normalising constant of this distribution is the enclosed prior
 mass with a likelihood exceeding $\thresh$, given by
 \begin{align}
 X(\thresh) &= \int \pi(\coord)
-                \mathds{1}\left(L(\coord) > \thresh\right) \, d\coord,
+                \mathds{1}\left(L(\coord) > \thresh\right) \, d\coord.
 \end{align}
-where $\mathds{1}()$ is an indicator function that returns 1 if the argument
-is true and 0 otherwise.
 Throughout this paper, we use $X$ for the enclosed prior mass; note that some
 authors use $\xi$. Then, the full expression for a constrained prior
 given a threshold $\thresh$ is
