@@ -1,5 +1,7 @@
 *.pdf
 *.aux
-*.loc
+*.log
 *.bbl
 *.blg
+*.out
+
