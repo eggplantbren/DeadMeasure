@@ -37,7 +37,14 @@
 %---------
 % The option pdftex is for use with pdfLaTeX. Remove "pdftex" for (1) compiling with LaTeX & dvi2pdf (if eps figures are used) or for (2) compiling with XeLaTeX.
 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
 \usepackage{natbib}
+
+\newcommand{\thresh}{\ell}
+\newcommand{\coord}{\boldsymbol{\theta}}
+\newcommand{\given}{\,|\,}
 
 %=================================================================
 % MDPI internal commands - do not modify
@@ -167,19 +174,50 @@
 
 
 \section{Introduction}
-
+Nested Sampling, introduced in 2004 by John Skilling
+\citep{skilling2004nested, skilling2006nested}, has established itself
+as the industry standard for calculating the marginal likelihood (evidence)
+in Bayesian inference, as well as partition functions in statistical
+mechanics \citep{ashton2022nested, buchner2023nested}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Diffusive Nested Sampling
 \citep{dns}
 
 
+Nested Sampling works with {\em constrained prior} distributions,
+parameterised by a likelihood threshold $\thresh$, given by
+\begin{align}
+p(\coord \given \thresh)
+    &\propto \pi(\coord)\mathds{1}\left(L(\coord) > \thresh\right).
+\end{align}
+The normalising constant of this distribution is the enclosed prior
+mass with a likelihood exceeding $\thresh$, given by
+\begin{align}
+X(\thresh) &= \int \pi(\coord)
+                \mathds{1}\left(L(\coord) > \thresh\right) \, d\coord,
+\end{align}
+where $\mathds{1}()$ is an indicator function that returns 1 if the argument
+is true and 0 otherwise.
+Throughout this paper, we use $X$ for the enclosed prior mass; note that some
+authors use $\xi$. Then, the full expression for a constrained prior
+given a threshold $\thresh$ is
+\begin{align}
+p(\coord \given \thresh)
+    &= \frac{\pi(\coord)\mathds{1}\left(L(\coord) > \thresh\right)}{X(\thresh)}.
+\end{align}
+
 %\begin{quote}
 %This is an example of a quote.
 %\end{quote}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results}
+
+
+\section{The Relation of the Dead Measure and }
+
+\section{Second Order Phase Transitions}
+
+
 
 %Bulleted lists look like this:
 %\begin{itemize}
