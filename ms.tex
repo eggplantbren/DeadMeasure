@@ -207,6 +207,36 @@ p(\coord \given \thresh)
     &= \frac{\pi(\coord)\mathds{1}\left(L(\coord) > \thresh\right)}{X(\thresh)}.
 \end{align}
 
+Nested Sampling makes use of the fact that $X$ is a complementary CDF
+(of likelihood values according to $\pi$), and thus the prior $\pi$
+becomes Uniform$(0, 1)$ in terms of $X$. This gives the simple expression
+for the marginal likelihood:
+\begin{align}
+Z &= \int_0^1 L(X) \, dX,
+\end{align}
+which is an expectation (of $L$) with respect to uniform density between
+0 and 1.
+In NS applications, it is traditional to work in terms of $\log(X)$.
+This is for numerical underflow reasons, but it also relates to the fundamental
+structure of NS.
+The fact that the prior $\pi$ is Uniform$(0, 1)$ implies
+(by a change of variables) that the
+prior $\pi$ expressed in terms of $Y = \log(X)$ is
+\begin{align}
+\pi(Y) &= \exp(Y)
+\end{align}
+for $Y < 0$ and zero otherwise. This is a reflected exponential distribution
+with scale length 1.
+
+Moreover, the constrained priors simply truncate the prior at a particular
+value of $\thresh$, $X$, or $Y$. Thus, in terms of $Y$, constrained priors have
+the following density:
+\begin{align}
+p\left(Y \given Y^*\right) &= \exp\left(Y - Y^*\right),
+\end{align}
+where $Y^*$ is the truncation point.
+
+
 %\begin{quote}
 %This is an example of a quote.
 %\end{quote}
@@ -245,6 +275,15 @@ This holds for any $\thresh_1$ and $\thresh_2 > \thresh_1$.
 Incidentally, this is very similar to the KL divergence between
 one uniform distribution and another defined on a subset
 being the log of the volume ratio.
+
+\section{The Dead Measure}
+The dead measure is given by
+\begin{align}
+p_{\rm dead}(\coord) &\propto \frac{\pi(\coord)}{X(L(\coord))}.
+\end{align}
+For an infinite Nested Sampling run, this is an improper (unnormalisable)
+measure. A finite run truncates it at a particular value of $L$
+(or $X$, or $Y$).
 
 \section{The Relation of the Dead Measure and }
 
