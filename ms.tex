@@ -211,9 +211,9 @@ p(\coord \given \thresh)
 %This is an example of a quote.
 %\end{quote}
 
-\section{The Jeffreys Prior for Likelihood Thresholds}
+\section{Kullback-Leibler Divergences of Constrained Priors}
 The family of constrained prior distributions is parameterised by the
-threshold $\ell$.
+threshold $\thresh$.
 
 The Kullback-Leibler divergence may be used to quantify the degree of
 departure of one probability distribution from another
@@ -222,14 +222,15 @@ departure of one probability distribution from another
 D_{\rm KL}\left(p \,||\, q\right)
     &= \int p(x)\log\left(\frac{p(x)}{q(x)}\right) \, dx.
 \end{align}
-Consider two constrained priors, one with a threshold $\thresh$, and one
-with a slightly higher threshold $\thresh + \epsilon$.
+Consider two constrained priors, one with a threshold $\thresh_1$, and one
+with a slightly higher threshold $\thresh_2 > \thresh_1$.
 The Kullback-Leibler divergence of the more constrained prior with
 respect to the less constrained one is
 \begin{align}
-D_{\rm KL}(\thresh+\epsilon \,||\, \thresh) &= \int_{L(\coord) > \thresh + \epsilon}
-                \frac{\pi(\coord)}{X(\thresh+\epsilon)}
-                \log\left(\frac{X(\thresh)}{X(\thresh+\epsilon)}\right)
+D_{\rm KL}(\thresh_2 \,||\, \thresh_1)
+    &= \int_{L(\coord) > \thresh_2}
+                \frac{\pi(\coord)}{X(\thresh_2)}
+                \log\left(\frac{X(\thresh_1)}{X(\thresh_2)}\right)
                 \, d\coord.
 \end{align}
 The indicator functions cancel since both equal 1 over the integration
@@ -237,30 +238,13 @@ range, which is why they do not appear in the expression.
 The expression is the expected value of a constant, and can be simplified
 to
 \begin{align}
-D_{\rm KL}(\thresh+\epsilon \,||\, \thresh) &= \log\left(\frac{X(\thresh)}{X(\thresh+\epsilon)}\right).
+D_{\rm KL}(\thresh_2 \,||\, \thresh_1)
+    &= \log\left(\frac{X(\thresh_1)}{X(\thresh_2)}\right).
 \end{align}
-This holds for any $\thresh$ and $\epsilon$, and we have not made use of the
-implication that $\epsilon$ is small, which we will use presently.
-The first two derivatives of $D_{\rm KL}$ with respect to $\epsilon$ are
-\begin{align}
-\frac{\partial}{\partial \epsilon} D_{\rm KL}
-    &= -\frac{\partial}{\partial \epsilon}
-            \log\left(X(\thresh+\epsilon)\right) \\
-    &= -\frac{X'(\thresh + \epsilon)}{X(\thresh + \epsilon)} \\
-\frac{\partial^2}{\partial \epsilon^2} D_{\rm KL}
-    &= -\frac{\partial}{\partial \epsilon}
-            \frac{X'(\thresh + \epsilon)}{X(\thresh + \epsilon)} \\
-    &= \frac{X'(\thresh + \epsilon)^2 - X''(\thresh + \epsilon)X(\thresh + \epsilon)}{X(\thresh + \epsilon)^2}
-\end{align}
-The information metric is obtained from the second derivative evaluated
-at $\epsilon=0$, giving
-\begin{align}
-\left.\frac{\partial^2}{\partial \epsilon^2} D_{\rm KL}\right|_{\epsilon=0}
-    &= \frac{X'(\thresh)^2 - X''(\thresh)X(\thresh)}{X(\thresh)^2}.
-\end{align}
-This expression is not obviously a simple result. However, if we change
-coordinates from $\ell$ to $X$, we see things more clearly.
-
+This holds for any $\thresh_1$ and $\thresh_2 > \thresh_1$.
+Incidentally, this is very similar to the KL divergence between
+one uniform distribution and another defined on a subset
+being the log of the volume ratio.
 
 \section{The Relation of the Dead Measure and }
 
